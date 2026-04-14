@@ -13,15 +13,18 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.status(200).json({ message: "The api is running" });
-})
-
-app.get('/help', (req, res) => {
-  res.status(200).json({ message: "healthy" });
+  res.status(200).json( "The api is running")
+});
+app.get('/health', (req, res) => {
+  res.status(200).json("healthy");
 })
 
 app.get('/me', (req, res) => {
-  res.status(200).json({ message: `Godson Chinonyerem godsonesq@gmail.com https://github.com/nielvid` });
+  res.status(200).json({
+    name: "Godson Chinonyerem",
+    email: "godsonesq@gmail.com",
+    github: "https://github.com/nielvid"
+  });
 })
 
 
