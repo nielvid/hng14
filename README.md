@@ -64,6 +64,12 @@ npm start
 http://localhost:8000
 ```
 
+Production URL:
+
+```text
+https://techops.name.ng
+```
+
 ## API Endpoints
 
 All endpoints return JSON and include:
