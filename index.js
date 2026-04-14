@@ -13,10 +13,14 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.status(200).json( "The api is running")
+  res.status(200).json({
+    message: "the API is running"
+  })
 });
 app.get('/health', (req, res) => {
-  res.status(200).json("healthy");
+  res.status(200).json({
+    message: "healthy"
+  });
 })
 
 app.get('/me', (req, res) => {
