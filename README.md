@@ -165,6 +165,45 @@ docker rm hng14-api-container
 - If dependencies fail to install, delete `node_modules` and `package-lock.json`, then run `npm install` again.
 - If Docker build fails, ensure Docker is running and retry the build.
 
+## Auto Deploy with GitHub Actions
+
+This project includes an automated deployment workflow at `.github/workflows/deploy.yml`.
+
+### How it works
+
+- Trigger: runs automatically on every push to the `main` branch.
+- Runner: `ubuntu-latest`.
+- Action used: `appleboy/ssh-action`.
+- Deployment target: your remote server over SSH.
+
+### Required GitHub Secrets
+
+Add these repository secrets in GitHub:
+
+- `SSH_HOST`: server IP address or domain.
+- `SSH_USERNAME`: SSH user on the server.
+- `SSH_PRIVATE_KEY`: private key used to connect to the server.
+
+### Remote deploy steps executed
+
+When triggered, the workflow connects to the server and runs:
+
+```bash
+cd hng14
+git pull origin main
+npm install
+pm2 restart index.js
+```
+
+This updates the app from `main`, installs dependencies, and restarts the process with PM2.
+
+### Deployment flow summary
+
+1. Push changes to `main`.
+2. GitHub Actions starts the deploy workflow.
+3. Workflow connects to your server via SSH.
+4. App is updated and restarted automatically.
+
 ## License
 
 ISC
